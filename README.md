@@ -1,4 +1,4 @@
 # Data Science Tutorials
-Mostly scikit-learn and tensorflow are used.
-MNIST...
-Titanci...
+<p>ostly scikit-learn and tensorflow are used.<p>
+<p>MNIST...<p>
+<p>Titanic...<p>
