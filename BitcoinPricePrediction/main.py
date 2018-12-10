@@ -9,15 +9,21 @@ e-mail: polatgorkem@gmail.com
 Written with Spyder IDE
 """
 
+"""
+Tensorboard command: tensorboard --logdir="TF_Logs"
+"""
+
 import pandas as pd
 import numpy as np
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from provider import getSequencedData, fetchTrainingData
+from datetime import datetime
+now = datetime.now()
 
 tf.reset_default_graph()
 
-n_steps  = 5
+n_steps  = 10
 n_inputs = 4
 n_neurons= 50
 n_outputs= 1
@@ -30,7 +36,7 @@ batchSize = 200
 data = pd.read_csv('datasets/BTC-USD.csv')
 
 #TEST: BEGIN
-data = data[0:105]
+data = data[0:205]
 #TEST: END
 
 X_data, y_data = getSequencedData(data, n_inputs, n_steps)    
@@ -54,27 +60,30 @@ training_operation = optimizer.minimize(loss)
 prediction = tf.cast(logit >= 0.5, tf.int32)
 correct_predictions = tf.equal(prediction, y)
 accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
+tf.summary.scalar("Accuracy", accuracy)
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
-for i in range(500):
+# Summary Writer
+merged = tf.summary.merge_all()
+writer = tf.summary.FileWriter('./TF_Logs/'+now.strftime("%Y%m%d-%H:%M:%S")+"_"+str(learningRate)+"/", sess.graph)
+
+for i in range(1000):
     X_batch, y_batch = fetchTrainingData(X_train, y_train, batchSize)    
     X_batch = X_batch.reshape((-1, n_steps, n_inputs))
     sess.run(training_operation, feed_dict={X: X_batch, y: y_batch})
     
-#    #TEST: BEGIN
-#    logit_D = sess.run(logit, feed_dict={X: X_batch, y: y_batch})
-#    loss_D = sess.run(loss, feed_dict={X: X_batch, y: y_batch})
-#    prediction_D = sess.run(prediction, feed_dict={X: X_batch, y: y_batch})
-#    #TEST: END
     accuracy_train = accuracy.eval(session=sess, feed_dict={X: X_batch, y: y_batch})
     
     X_test = X_test.reshape((-1, n_steps, n_inputs))
     accuracy_test = accuracy.eval(session=sess, feed_dict={X: X_test, y: y_test})
     print(str(i)+": Train Accuracy: "+ str(accuracy_train)+" : Test Accuracy: "+str(accuracy_test))
     
+    if (i%10 == 0):
+        summary = sess.run(merged, feed_dict={X: X_batch, y: y_batch})
+        writer.add_summary(summary, i)
 
 
 
