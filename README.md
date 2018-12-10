@@ -1,6 +1,8 @@
 # Data Science Tutorials
-  **Mostly scikit-learn and tensorflow implementations**
-  MNIST
-  Titanic
-  Housing price estimation on california housing dataset
-  Bitcoin price movement estimation
+
+**Mostly scikit-learn and tensorflow implementations**
+
+* MNIST classification
+* Titanic survival classification
+* Housing price estimation on california housing dataset
+* Bitcoin price movement estimation (classification)
