@@ -1,1 +1,5 @@
+Bitcoin Price Movement Classification using LSTM
 
+Implemented with Tensorflow
+
+BTC-USD dataset downloaded from Yahoo Finance.
