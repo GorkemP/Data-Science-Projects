@@ -17,18 +17,26 @@
 
 **k=16, c=2**  
 **Compression rate = 7**
-
-![compressed_16_2] (images/result_k_16_c_2.png)
+<p align="center">
+  <img src="images/result_k_16_c_2.png">
+</p>
 
 **k=8, c=2**  
 **Compression rate = 10**
-
-
+<p align="center">
+  <img src="images/result_k_8_c_2.png">
+</p>
 
 **k=8, c=4**  
 **Compression rate = 39**
 
-
+<p align="center">
+  <img src="images/result_k_8_c_4.png">
+</p>
 
 **k=4, c=2**  
 **Compression rate = 15**
+
+<p align="center">
+  <img src="images/result_k_4_c_2.png">
+</p>
