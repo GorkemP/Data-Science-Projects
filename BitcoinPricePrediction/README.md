@@ -4,6 +4,7 @@
 * BTC-USD dataset downloaded from Yahoo Finance 
 * Google trends data for the term "Bitcoin" is used 
 * LSTM network is used for model architecture 
+* Datasets cover between January 2017 and December 2018
 
 ## Some accuracy graphs
 
@@ -12,6 +13,10 @@ Train accuracies
 
 Test accuracies
 ![Test Accuracies](https://raw.githubusercontent.com/GorkemP/Data-Science-Tutorials/master/BitcoinPricePrediction/images/test_Accuracy.svg?sanitize=true)
+
+### Note
+* main.py   => only historical price dataset is used
+* main_2.py => both historical price and Google trends data are used
 
 ## References
 
