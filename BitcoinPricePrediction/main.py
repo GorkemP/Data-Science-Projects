@@ -23,21 +23,23 @@ now = datetime.now()
 
 tf.reset_default_graph()
 
-n_steps  = 40
+n_steps  = 100
 n_inputs = 4
 n_neurons= 20
 n_outputs= 1
 n_layers = 2
 
 learningRate = 0.002
-batchSize = 200
+
 
 # Prepare the data
 data = pd.read_csv('datasets/BTC-USD.csv')
 
 ##TEST: BEGIN
-data = data[0:205]
+#data = data[0:205]
 ##TEST: END
+
+batchSize = len(data)
 
 X_data, y_data = getSequencedData(data, n_inputs, n_steps)    
 X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2)
@@ -68,8 +70,8 @@ prediction = tf.cast(logit >= 0.5, tf.int32)
 correct_predictions = tf.equal(prediction, y)
 
 accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
-training_summary = tf.summary.scalar("Train Accuracy", accuracy)
-test_summary = tf.summary.scalar("Test Accuracy", accuracy)
+training_summary = tf.summary.scalar("train_accuracy", accuracy)
+test_summary = tf.summary.scalar("Test_Accuracy", accuracy)
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
@@ -79,7 +81,7 @@ sess.run(init)
 merged = tf.summary.merge_all()
 writer = tf.summary.FileWriter('./TF_Logs/'+now.strftime("%Y%m%d-%H:%M:%S")+"_"+str(learningRate)+"/", sess.graph)
 
-for i in range(1000):
+for i in range(2000):
     X_batch, y_batch = fetchTrainingData(X_train, y_train, batchSize)    
     X_batch = X_batch.reshape((-1, n_steps, n_inputs))
     sess.run(training_operation, feed_dict={X: X_batch, y: y_batch})
