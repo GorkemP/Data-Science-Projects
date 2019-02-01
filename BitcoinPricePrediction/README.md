@@ -8,12 +8,10 @@
 ## Some accuracy graphs
 
 Train accuracies
-
-(images/train_accuacy.svg)
+![Train Accuracies](https://raw.githubusercontent.com/GorkemP/Data-Science-Tutorials/master/BitcoinPricePrediction/images/train_accuracy.svg?sanitize=true)
 
 Test accuracies
-
-(images/test_accuracy.svg)
+![Test Accuracies](https://raw.githubusercontent.com/GorkemP/Data-Science-Tutorials/master/BitcoinPricePrediction/images/test_Accuracy.svg?sanitize=true)
 
 ## References
 
