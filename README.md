@@ -7,4 +7,4 @@
 * Housing price estimation on california housing dataset (Scikit-Learn)
 * Bitcoin price movement estimation (classification) (Scikit-Learn)
 * Image compression with k-means (Scikit-Learn)
-* Deep Convolutional Generative Adversarial Network (DCGAN) for Pokemon generation
+* Deep Convolutional Generative Adversarial Network (DCGAN) for Pokemon generation (Tensorflow)
